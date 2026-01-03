@@ -15,6 +15,40 @@
                 @error('content') <span class="p-2 m-2 text-red-500 ">{{ $message }}</span> @enderror
             </div>
 
+            <div class="mb-4">
+                <label class="flex items-center">
+                    <input type="checkbox" class="mr-2" name="published" wire:model.boolean="form.published">published</label>
+            </div>
+
+            <div>
+                <div class="mb-4"> notification options</div>
+                <div class="flex gap-4 mb-3">
+                    <div>
+                        <label class="flex items-center">
+                            <input wire:model.boolean="form.allowNotifications" class="mr-2" type="radio" value="true">Yes
+                        </label>
+
+                        <label class="flex items-center">
+                            <input wire:model.boolean="form.allowNotifications" class="mr-2" type="radio" value="false">no
+                        </label>
+                    </div>
+
+                    <div x-show="$wire.form.allowNotifications" class="flex gap-4">
+                        <label class="flex items-center">
+                            <input wire:model="form.notifications" class="mr-2" type="checkbox" value="email">email
+                        </label>
+
+                        <label class="flex items-center">
+                            <input wire:model="form.notifications" class="mr-2" type="checkbox" value="sms">sms
+                        </label>
+                        <label class="flex items-center">
+                            <input wire:model="form.notifications" class="mr-2" type="checkbox" value="push">push
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="flex justify-end">
                 <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-md transition transform hover:scale-105">
                     Save Article

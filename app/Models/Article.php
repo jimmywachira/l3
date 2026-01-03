@@ -9,5 +9,10 @@ class Article extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'published', 'notifications'];
+
+    protected $cast = [
+        'published' => 'boolean',
+        'notifications' => 'array',
+    ];
 }

@@ -5,33 +5,19 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
 use App\Models\Article;
+use App\Livewire\Forms\ArticleForm;
 
 class CreateArticle extends AdminComponent
 {
+ 
+public ArticleForm $form;
 
-    #[Validate('required|string|max:255')]
-    public $title;
+public function save(){
+    $this->form->store();
+    $this->redirect('/dashboard/articles', navigate:true);
+}
     
-    #[Validate('required|string')]
-    public $content;
-    #public $author;
-
-    public function save(){
-    $this->validate();
-        Article::create([
-            'title' => $this->title,
-            'content' => $this->content,
-        ]);
-
-        session()->flash('message', 'Article created successfully.');
-
-        // Reset form fields
-        $this->reset(['title', 'content']);
-        $this->redirect('/dashboard/articles', navigate:true);
-    }
-    
-    public function render()
-    {
-        return view('livewire.create-article');
+public function render(){
+    return view('livewire.create-article');
     }
 }

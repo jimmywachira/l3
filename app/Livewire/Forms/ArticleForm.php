@@ -12,7 +12,10 @@ class ArticleForm extends Form
 
     #[Validate('required|string|max:255')]
     public $title;
-    
+    public $notifications = [];
+    public $published = false;
+    public $allowNotifications = false;
+
     #[Validate('required|string')]
     public $content;
   
@@ -21,15 +24,22 @@ class ArticleForm extends Form
         $this->article = $article;
         $this->title = $article->title;
         $this->content = $article->content;
+        $this->published = $article->published;
+        $this->notifications = $article->notifications ?? [];
+        $this->allowNotifications = count($this->notifications) > 0 ? true : false;
     }
 
     public function store(){
  
         $this->validate();
-        
-        Article::create($this->only(['title', 'content']));
 
-        #session()->flash('message', 'Article created successfully.');
+        if(!$this->allowNotifications){
+            $this->notifications = [];
+        }
+        
+        Article::create($this->only(['title', 'content', 'published', 'notifications']));
+
+        session()->flash('message', 'Article created successfully.');
 
             // Reset form fields
             // $this->reset(['title', 'content']);
@@ -37,9 +47,13 @@ class ArticleForm extends Form
         }
 
     public function update()
-    {
+    { 
         $this->validate();
 
-        $this->article->update($this->only(['title', 'content']));
+        if(!$this->allowNotifications){
+            $this->notifications = [];
+        }
+
+        $this->article->update($this->only(['title', 'content', 'published', 'notifications']));
     }
 }
