@@ -22,8 +22,8 @@
         <nav class="p-4 flex justify-between items-center">
             <a href="/" class="text-2xl font-bold text-blue-800">Blog<span class="text-blue-400">Ed</span> </a>
             <div class=" gap-1 font-bold">
-                <a wire:navigate href="/" class="transition px-4 rounded-full rounded-r py-2 border-2 hover:text-blue-600 {{ request()->is('/') ? 'text-blue-600 text-2xl border-blue-600' : '' }}">Home</a>
-                <a href="/dashboard" class="{{ request()->is('/dashboard') ? 'text-blue-600 border-blue-600' : '' }} border-2 border-black px-4 py-2 hover:text-blue-600 rounded-full rounded-l">AdminDashboard</a>
+                <a wire:navigate href="/" class="transition px-4 rounded-full rounded-r py-2 hover:text-2xl border-2 border-black hover:text-blue-600 {{ request()->is('/') ? 'text-blue-600 text-2xl border-blue-600' : '' }}">Home</a>
+                <a href="/dashboard" class="{{ request()->is('/dashboard') ? 'text-blue-600  border-blue-600' : '' }} border-2 border-black px-4 py-2  hover:text-2xl rounded-full rounded-l">AdminDashboard</a>
             </div>
 
             <div>

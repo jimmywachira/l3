@@ -5,6 +5,18 @@
             <ion-icon name="add-circle-outline" class="text-xl"></ion-icon>
             <span>Create Article</span>
         </a>
+
+    </div>
+
+    <div class="justify-end flex gap-4 mb-4">
+        <button class=" text-blue-600 p-2 rounded-full hover:text-2xl border-2 border-blue-700" wire:click='showAll()'>show all</button>
+        <button wire:click='showPublished()' class="text-blue-600 p-2 rounded-full hover:text-2xl border-2 border-blue-700">published (
+            <livewire:published-count placeholder-text="loading" />)
+        </button>
+    </div>
+
+    <div class="px-6 py-4 rounded-full bg-white border-t border-gray-200">
+        {{ $articles->links() }}
     </div>
 
     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border border-gray-200">
@@ -60,5 +72,7 @@
                 </tbody>
             </table>
         </div>
+
     </div>
+</div>
 </div>

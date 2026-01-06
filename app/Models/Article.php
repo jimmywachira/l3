@@ -11,7 +11,8 @@ class Article extends Model
 
     protected $fillable = ['title', 'content', 'published', 'notifications'];
 
-    protected $cast = [
+    // Cast booleans and notification payload so arrays are JSON encoded automatically
+    protected $casts = [
         'published' => 'boolean',
         'notifications' => 'array',
     ];

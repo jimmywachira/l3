@@ -1,5 +1,5 @@
 <div class="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-    <div class="shadow-xl sm:rounded-lg p-6 bg-gray-100">
+    <div class="shadow-xl sm:rounded-lg p-6 bg-gray-100/50">
         <h1 class="text-3xl font-bold text-gray-900 mb-6">Create New Article</h1>
 
         <form wire:submit.prevent="save">
@@ -50,8 +50,8 @@
 
 
             <div class="flex justify-end">
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-md transition transform hover:scale-105">
-                    Save Article
+                <button wire:dirty.class='hover:bg-blue-700' type="submit" wire:dirty.remove.attr="disabled" class="bg-blue-600 disabled:opacity-30 text-white font-bold py-2 px-4 rounded-full shadow-md transition transform hover:scale-105" disabled>
+                    save
                 </button>
             </div>
         </form>

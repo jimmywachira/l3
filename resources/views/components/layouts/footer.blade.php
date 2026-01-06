@@ -27,7 +27,7 @@
 
             </div>
 
-            <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+            <div class="mt-6 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
                 <div class="md:grid md:grid-cols-2 md:gap-8">
                     <div>
                         <ul class="mt-4 space-y-4">
@@ -37,8 +37,8 @@
                         </ul>
                     </div>
 
-                    <div class="mt-12 md:mt-0">
-                        <h3 class="text-sm font-semibold tracking-wider uppercase">Legal</h3>
+                    <div class="mt-6 md:mt-0">
+                        <h3 class="text-sm text-blue-700 font-semibold tracking-wider uppercase">Legal</h3>
                         <ul class="mt-4 space-y-4">
                             <li><a href="#" class="text-base text-gray-500 hover:text-gray-900">Privacy Policy</a></li>
                             <li><a href="#" class="text-base text-gray-500 hover:text-gray-900">Terms of Service</a></li>
@@ -48,13 +48,13 @@
 
                 <div class="md:grid md:grid-cols-1 md:gap-8">
                     <div>
-                        <h3 class="text-sm font-semibold  tracking-wider uppercase">Subscribe</h3>
-                        <p class="mt-4 text-base text-gray-500">The latest news, articles, and resources, sent to your inbox weekly.</p>
+                        <h3 class="text-sm text-blue-700 font-semibold tracking-wider uppercase">Subscribe</h3>
+                        <p class="mt-4 ">The latest news, articles, and resources, sent to your inbox weekly.</p>
                         <form class="mt-4 sm:flex sm:max-w-md">
                             <label for="email-address" class="sr-only">Email address</label>
-                            <input type="email" name="email-address" id="email-address" autocomplete="email" required class="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:border-blue-500 sm:max-w-xs" placeholder="Enter your email">
+                            <input type="email" name="email-address" id="email-address" autocomplete="email" required class="appearance-none min-w-0 w-full bg-white border border-gray-300 py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:border-blue-500 sm:max-w-xs rounded-full rounded-r" placeholder="Enter your email">
                             <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                                <button type="submit" class="w-full bg-blue-600 flex items-center justify-center border border-transparent rounded-md py-2 px-4 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Subscribe</button>
+                                <button type="submit" class="w-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full rounded-l shadow-md transition transform hover:scale-105">Subscribe</button>
                             </div>
                         </form>
                     </div>

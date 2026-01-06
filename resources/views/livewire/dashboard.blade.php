@@ -31,7 +31,7 @@
 
         <!-- Recent Articles -->
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold text-gray-900">Manage Articles</h1>
+            <a wire:navigate href="/dashboard/articles" class="text-3xl font-bold text-gray-900">Manage Articles</a>
             <a wire:navigate href="/dashboard/articles/create" class="bg-blue-600 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 rounded-full flex items-center gap-2 shadow-md transition transform hover:scale-105">
                 <ion-icon name="add-circle-outline" class="text-xl"></ion-icon>
                 <span>Create Article</span>

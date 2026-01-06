@@ -40,20 +40,11 @@ class ArticleForm extends Form
         Article::create($this->only(['title', 'content', 'published', 'notifications']));
 
         session()->flash('message', 'Article created successfully.');
-
-            // Reset form fields
-            // $this->reset(['title', 'content']);
-            // $this->redirect('/dashboard/articles', navigate:true);
         }
 
-    public function update()
-    { 
+    public function update(){ 
+
         $this->validate();
-
-        if(!$this->allowNotifications){
-            $this->notifications = [];
-        }
-
         $this->article->update($this->only(['title', 'content', 'published', 'notifications']));
     }
 }
