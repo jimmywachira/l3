@@ -1,6 +1,6 @@
 <div class="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8 rounded-md bg-white">
     <div class="shadow-xl sm:rounded-lg p-6">
-        <h1 class="text-3xl font-bold text-gray-900 mb-6">Edit Article</h1>
+        <h1 class="text-3xl font-bold text-gray-900  mb-6">Edit Article (ID: {{ $form->id }})</h1>
 
         <form wire:submit.prevent="save">
             <div class="mb-4">
@@ -16,8 +16,29 @@
                 <label for="content" class="block font-bold text-gray-700" wire:target='form.content' wire:dirty.class=" font-bold text-red-600">Content <span class="text-red-500 " wire:dity wire:target='form.content'>
                         *
                     </span></label>
-                <textarea id="content" wire:model="form.content" rows="10" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                <textarea id="content" wire:model="form.content" rows="6" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
                 @error('content') <span class="p-2 m-2 text-red-500 ">{{ $message }}</span> @enderror
+            </div>
+
+            <div class="mb-4">
+                <label for="photo_path" class="block font-bold text-gray-700">Photo</label>
+
+                <div class="mb-2">
+                    @if($form->photo){
+                    <img src="{{ $this->photo->temporaryUrl() }}" alt="Preview Photo" class="w-1/2 inline rounded-md">
+                    }
+                    @elseif($form->photo_path)
+                    <img src="{{ Storage::url($form->photo_path) }}" alt="Article Photo" class="w-1/2 inline rounded-md">
+                    <div class="mt-2 text-sm text-white"><button type="button" class="inline-flex p-2 bg-blue-600 items-center" wire:click.prevent="downloadPhoto">
+                            Download Photo
+                        </button></div>
+                    @else
+                    <p class="text-gray-500 italic">No photo uploaded.</p>
+                    @endif
+                </div>
+
+                <input type="file" id="photo_path" wire:model="form.photo_path" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
+                @error('photo_path') <span class="p-2 m-2 text-red-500 ">{{ $message }}</span> @enderror
             </div>
 
             <div class="mb-4">
@@ -40,7 +61,7 @@
                         </label>
                     </div>
 
-                    <div x-show="$wire.form.allowNotifications" class="flex gap-4">
+                    <div x-show="$wire.form.allowNotifications" class="flex gap-4" wire:transition>
                         <label class="flex items-center">
                             <input wire:model="form.notifications" class="mr-2" type="checkbox" value="email">email
                         </label>

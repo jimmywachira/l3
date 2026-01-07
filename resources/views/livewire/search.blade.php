@@ -6,7 +6,13 @@
         </div>
     </form>
 
-    @if(!empty($searchText))
+    {{-- @if(!empty($searchText))
     <livewire:search-results :results="$results" :show="!empty($results)" :placeholder="$placeholder" />
+    @endif --}}
+    @if(!empty($searchText))
+
+    <div wire:transition.duration.1s class="mt-2">
+        <livewire:search-results :results="$results" />
+    </div>
     @endif
 </div>

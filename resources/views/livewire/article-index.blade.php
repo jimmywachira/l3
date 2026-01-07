@@ -1,4 +1,5 @@
 <div class=" min-h-screen py-12">
+    <div wire:offline class="bg-red-600 text-white p-2 rounded-md mb-4 text-center"> You are currently offline. Some features may not be available. </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center">
             <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Latest Insights</h2>
@@ -10,7 +11,7 @@
         @if($articles->count() > 0)
         {{-- Featured Article (First one) --}}
         @php $featured = $articles->first(); @endphp
-        <div class="mt-12 relative rounded-2xl shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4 bg-white hover:shadow-2xl transition-shadow duration-300 group">
+        <div wire:offline.class.remove='bg-blue-300' class="mt-12 relative rounded-2xl shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4 bg-white hover:shadow-2xl transition-shadow duration-300 group">
             <div class="relative h-64 lg:h-full overflow-hidden">
                 <img class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://picsum.photos/seed/{{ $featured->id }}/800/600" alt="{{ $featured->title }}">
             </div>

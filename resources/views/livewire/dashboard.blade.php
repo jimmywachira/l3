@@ -22,7 +22,7 @@
                 </div>
                 <div class="bg-gray-50 px-5 py-3">
                     <div class="text-sm">
-                        <a href="{{ route('articles.index', ['status' => 'published']) }}" text-blue-600 hover:text-blue-500">View published</a>
+                        {{-- <a href="{{ route('articles-show', ['status' => 'published']) }}" class="text-blue-600 hover:text-blue-500">View published</a> --}}
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="bg-gray-50 px-5 py-3">
                     <div class="text-sm">
-                        <a href="{{ route('articles.index', ['status' => 'draft']) }}" text-blue-600 hover:text-blue-500">View drafts</a>
+                        {{-- <a href="{{ route('articles.index', ['status' => 'draft']) }}" class="text-blue-600 hover:text-blue-500">View drafts</a> --}}
                         <div class="ml-5 w-0 flex-1">
                             <dl>
                                 <dt class=" truncate">Total Articles</dt>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="bg-gray-50 px-5 py-3">
                     <div class="">
-                        <a href="{{ route('articles.index') }}" class=text-blue-600 hover:text-blue-500">View all</a>
+                        {{-- <a href="{{ route('articles.index') }}" class="text-blue-600 hover:text-blue-500">View all</a> --}}
                     </div>
                 </div>
             </div>

@@ -24,7 +24,9 @@
                 <a wire:navigate href="/" class="transition px-4 rounded-full rounded-r py-2 border-2 border-black hover:text-blue-600 {{ request()->is('/') ? 'text-blue-600 text-2xl border-blue-600' : '' }}">Home</a>
                 <a wire:navigate href="/dashboard" class="{{ request()->is('dashboard*') ? 'text-blue-600 text-2xl border-blue-600' : '' }} border-2 border-black px-4 py-2 hover:text-blue-600 rounded-full rounded-l">AdminDashboard</a>
             </div>
-
+            <div class=" gap-1 font-bold">
+                <a href='/logout'>Logout</a>
+            </div>
             <div>
                 <livewire:search />
             </div>

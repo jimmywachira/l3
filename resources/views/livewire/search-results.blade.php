@@ -1,4 +1,5 @@
-<div class="{{ $show ? 'block' : 'hidden' }} relative z-50">
+<div class=" relative z-50">
+    {{-- <div class="{{ $show ? 'block' : 'hidden' }} relative z-50"> --}}
     <div class="absolute top-0 left-0 w-full mt-2 bg-white shadow-2xl  overflow-hidden ring-1 ring-black ring-opacity-5 transform transition-all">
         @if(count($results) === 0)
         <div class="px-4 py-6 text-center">

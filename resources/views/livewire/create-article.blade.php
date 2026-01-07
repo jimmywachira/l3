@@ -11,8 +11,29 @@
 
             <div class="mb-4">
                 <label for="content" class="block font-bold text-gray-700">Content</label>
-                <textarea id="content" wire:model="form.content" rows="10" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                <textarea id="content" wire:model="form.content" rows="5" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
                 @error('content') <span class="p-2 m-2 text-red-500 ">{{ $message }}</span> @enderror
+            </div>
+
+            <div class="mb-4">
+                <label for="photo_path" class="block font-bold text-gray-700">Photo</label>
+
+                <div class="mb-4">
+                    <label for="photo_path" class="block font-bold text-gray-700">Photo</label>
+
+                    <div class="mb-2">
+                        @if($form->photo){
+                        <img src="{{ $this->photo->temporaryUrl() }}" alt="Preview Photo" class="w-1/2 rounded-md">
+                        }
+                        @endif
+                    </div>
+
+                    <input type="file" id="photo_path" wire:model="form.photo_path" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
+                    @error('photo_path') <span class="p-2 m-2 text-red-500 ">{{ $message }}</span> @enderror
+                </div>
+
+                <input type="file" id="photo_path" wire:model="form.photo_path" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
+                @error('photo_path') <span class="p-2 m-2 text-red-500 ">{{ $message }}</span> @enderror
             </div>
 
             <div class="mb-4">

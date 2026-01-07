@@ -17,15 +17,10 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        // User::factory()->firstOrCreate([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-        // Greeting::create(['greeting' => 'Hello']);
-        // Greeting::create(['greeting' => 'Hi']);
-        // Greeting::create(['greeting' => 'Hey']);
-        // Greeting::create(['greeting' => 'Heyy!']);
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
         
         Article::factory()->count(10)->create();
     }
