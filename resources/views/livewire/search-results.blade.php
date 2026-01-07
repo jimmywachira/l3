@@ -1,13 +1,14 @@
 <div class="{{ $show ? 'block' : 'hidden' }} relative z-50">
-    <div class="absolute top-0 left-0 w-full mt-2 bg-white rounded-2 rounded-r shadow-2xl  overflow-hidden ring-1 ring-black ring-opacity-5 transform transition-all">
+    <div class="absolute top-0 left-0 w-full mt-2 bg-white shadow-2xl  overflow-hidden ring-1 ring-black ring-opacity-5 transform transition-all">
         @if(count($results) === 0)
         <div class="px-4 py-6 text-center">
-            <div class="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
+            <div class="mx-auto flex h-5 w-5 items-center justify-center rounded-full bg-gray-100">
                 <ion-icon name="search-outline" class="text-gray-400 text-xl"></ion-icon>
             </div>
             <h3 class="mt-2 text-gray-900">No results found</h3>
             <p class="mt-1 text-gray-500">We couldn't find anything matching your search.</p>
         </div>
+
         @else
         <ul role="list" class="max-h-96 overflow-y-auto divide-y divide-gray-100">
             @foreach($results as $result)

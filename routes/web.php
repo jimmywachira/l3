@@ -14,7 +14,6 @@ use App\Livewire\Dashboard;
 use App\Livewire\CreateArticle;
 use App\Livewire\EditArticle;
 
-
 Route::get('/contact', function () {
     return view('contact');
 });

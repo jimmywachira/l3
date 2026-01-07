@@ -14,7 +14,7 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="absolute inset-0 -z-10 h-full w-full capitalize font-semibold bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:36px_36px]" x-data x-on:click="$dispatch('search:clear-results')" style="font-family: 'Google Sans Code', sans-serif;">
+<body class="absolute inset-0 -z-10 h-full w-full capitalize font-semibold bg-gray-200/50 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:36px_36px]" x-data x-on:click="$dispatch('search:clear-results')" style="font-family: 'Google Sans Code', sans-serif;">
 
     {{-- <x-header /> --}}
     <header>

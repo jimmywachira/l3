@@ -11,7 +11,6 @@ use Livewire\WithPagination;
 
 #[Title('Create Article')]
 class CreateArticle extends AdminComponent{
-    use WithPagination;
     
     public ArticleForm $form;
 

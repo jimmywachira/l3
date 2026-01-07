@@ -5,6 +5,9 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Article;
 use App\Livewire\Forms\ArticleForm;
+use Livewire\Attributes\Title;
+
+#[Title('Edit Article')]
 
 class EditArticle extends Component{
 

@@ -1,4 +1,4 @@
-<div class="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8 rounded-md bg-gray-100/50">
+<div class="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8 rounded-md bg-white">
     <div class="shadow-xl sm:rounded-lg p-6">
         <h1 class="text-3xl font-bold text-gray-900 mb-6">Edit Article</h1>
 

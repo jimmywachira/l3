@@ -7,7 +7,7 @@ use App\Models\Article;
 
 class ShowArticle extends Component
 {
-    public Article $article;
+    public ?Article $article = null;
 
     public function mount(Article $article){
         $this->article = $article;
@@ -15,6 +15,8 @@ class ShowArticle extends Component
     
     public function render()
     {
-        return view('livewire.show-article');
+        return view('livewire.show-article',[
+            'article' => $this->article,
+        ]);
     }
 }

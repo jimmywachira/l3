@@ -1,7 +1,7 @@
 <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-gray-900">Manage Articles</h1>
-        <a wire:navigate href="/dashboard/articles/create" class="border text-blue-600 border-blue-600 hover:bg-blue-700 hover:text-white py-2 px-4 rounded-full flex items-center gap-2 shadow transition transform hover:scale-105">
+        <a wire:navigate href="/dashboard/articles/create" class="border text-gray-600 border-blue-600 hover:text-xl hover:text-black py-2 px-4 rounded-full flex items-center gap-2 shadow transition transform hover:scale-105">
             <ion-icon name="add-circle-outline" class="text-xl"></ion-icon>
             <span>Create Article</span>
         </a>
@@ -9,17 +9,17 @@
     </div>
 
     <div class="justify-end flex gap-4 mb-4">
-        <button class=" text-blue-600 p-2 rounded-full hover:text-2xl border-2 border-blue-700" wire:click='showAll()'>show all</button>
-        <button wire:click='showPublished()' class="text-blue-600 p-2 rounded-full hover:text-2xl border-2 border-blue-700">published (
+        <button class=" text-gray-600 px-4 py-2 rounded-full rounded-r hover:text-xl border-2 border-blue-700 hover:text-black" wire:click='showAll()'> All</button>
+        <button wire:click='showPublished()' class="text-gray-600 px-4 py-2 rounded-full rounded-l hover:text-xl border-2 border-blue-700 hover:text-black">Published (
             <livewire:published-count placeholder-text="loading" />)
         </button>
     </div>
 
-    <div class="px-6 py-4 rounded-full bg-white border-t border-gray-200">
-        {{ $articles->links() }}
+    <div class="px-6 py-4 mb-2 ">
+        {{ $articles->links() ?? ''}}
     </div>
 
-    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border border-gray-200">
+    <div class="bg-white/50 overflow-hidden shadow-xl sm:rounded-lg border-2 border-gray-200 rounded-full rounded-l">
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">

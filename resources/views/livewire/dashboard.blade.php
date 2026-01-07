@@ -2,7 +2,6 @@
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
 
-
         <!-- Stats Grid -->
         <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 mb-8">
             <div class="bg-white overflow-hidden shadow rounded-lg">
@@ -13,6 +12,40 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                             </svg>
                         </div>
+                        <div class="ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class=" text-gray-500 truncate">Published Articles</dt>
+                                {{-- <dd class=" text-gray-900">{{ $articles->published() }}</dd> --}}
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-5 py-3">
+                    <div class="text-sm">
+                        <a href="{{ route('articles.index', ['status' => 'published']) }}" text-blue-600 hover:text-blue-500">View published</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="p-5">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div class="ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class=" text-gray-500 truncate">Draft Articles</dt>
+                                <dd class=" text-gray-900">{{ $draftArticles }}</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-5 py-3">
+                    <div class="text-sm">
+                        <a href="{{ route('articles.index', ['status' => 'draft']) }}" text-blue-600 hover:text-blue-500">View drafts</a>
                         <div class="ml-5 w-0 flex-1">
                             <dl>
                                 <dt class=" truncate">Total Articles</dt>
@@ -63,7 +96,7 @@
                                     {{ $article->created_at->format('M d, Y') }}
                                 </span>
                             </td>
-                            <td class="px-6 py-4 capitalize whitespace-nowrap text-right text-sm font-medium">
+                            <td class="px-6 py-4 capitalize whitespace-nowrap text-right ">
                                 <div class="flex justify-end gap-4">
                                     <a wire:navigate href="/articles/{{ $article->id }}" class=" hover:text-blue-600 transition-colors" title="View">
                                         <ion-icon size="large" name="eye-outline" class="text-sm font-bold text-blue-400 hover:text-blue-600 transition-colors">show</ion-icon>

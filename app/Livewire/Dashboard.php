@@ -29,8 +29,10 @@ class Dashboard extends Component
     public function render()
     {
         return view('livewire.dashboard', [
+            'publishedArticles' => Article::where('published', true)->count(),
+            'draftArticles' => Article::where('published', false)->count(),
             'totalArticles' => Article::count(),
-            'recentArticles' => Article::latest()->take(10)->get(),
+            'articles' => Article::latest()->take(10)->get(),
         ])->layout('components.layouts.admin');
     }
 }
