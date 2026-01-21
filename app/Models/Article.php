@@ -17,3 +17,7 @@ class Article extends Model
         'notifications' => 'array',
     ];
 }
+
+
+
+

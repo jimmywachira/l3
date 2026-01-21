@@ -8,6 +8,10 @@
             </p>
         </div>
 
+        <div class='mx-auto max-w-4xl px-4'>
+            <livewire:search />
+        </div>
+
         @if($articles->count() > 0)
         {{-- Featured Article (First one) --}}
         @php $featured = $articles->first(); @endphp
