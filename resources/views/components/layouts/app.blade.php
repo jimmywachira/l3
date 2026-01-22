@@ -1,7 +1,7 @@
-<x-layout title="{{ $title ?? 'Home ' }}">
+<x-layout title="{{ $title ?? 'Home' }}">
     
-    <div class="relative w-full font-semibold ">
-        <main class="min-h-[calc(100vh-160px)]:pl-0 pl-20">
+    <div class="relative w-full font-semibold">
+        <main class="min-h-[calc(100vh-160px)] pl-0 lg:pl-20">
             {{ $slot }}
         </main>
     </div>
