@@ -1,4 +1,4 @@
-<div class="mt-6 p-2">
+<div class="w-2xl p-2">
     <form>
         <div class="m-2">
             <input wire:model.live.debounce.300ms="searchText" type="text" class="w-full border-2 border-black px-8 py-2 hover:text-blue-600" placeholder="{{ $placeholder }}">

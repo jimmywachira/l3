@@ -10,6 +10,9 @@ use App\Models\Article;
 class Dashboard extends Component
 {
     public $articles;
+    public $publishedArticles;
+    public $draftArticles;
+    public $totalArticles;
 
     public function mount(){
         $this->articles = Article::latest()->take(10)->get();

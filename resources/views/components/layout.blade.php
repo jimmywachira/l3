@@ -19,6 +19,7 @@
 
 <body class="min-h-screen w-full capitalize font-semibold bg-gray-200/50 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:36px_36px]" x-data x-cloak x-on:click="$dispatch('search:clear-results')">
     <x-layouts.header />
+    
     {{ $slot }}
 
     <x-layouts.footer />

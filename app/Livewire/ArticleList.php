@@ -13,7 +13,7 @@ use Livewire\Attributes\Session;
 #[Title('Manage Articles')]
 class ArticleList extends AdminComponent{
 
-    use WithPagination;
+    use WithPagination; 
 
     #[Session]
     public $showOnlyPublished = false;

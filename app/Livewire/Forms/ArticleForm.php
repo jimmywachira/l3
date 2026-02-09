@@ -37,7 +37,7 @@ class ArticleForm extends Form
         $this->published = $article->published;
         $this->notifications = $article->notifications ?? [];
         $this->allowNotifications = count($this->notifications) > 0 ? true : false;
-        $this->photo_path=$article->photo_path;
+        $this->photo_path= $article->photo_path;
     }
 
     public function store(){

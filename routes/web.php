@@ -30,7 +30,7 @@ Route::get('/logout', function () {
 // Route::get('/register', Register::class)->name('register');
 
 #Route::get('/search', Search::class)->name('search');
-#Route::get('/articles', ShowArticle::class)->name('articles.index');
+// Route::get('/articles', ShowArticle::class)->name('articles.index');
 
 Route::get('/articles/{article}', ShowArticle::class)->name('articles.show');
 Route::get('/dashboard', Dashboard::class)->name('dashboard')->middleware('auth');

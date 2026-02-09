@@ -9,15 +9,13 @@ class Article extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'content', 'published', 'notifications','photo_path'];
+    protected $fillable = ['title', 'content', 'published', 'notifications', 'photo_path', 'tags', 'categories'];
 
     // Cast booleans and notification payload so arrays are JSON encoded automatically
     protected $casts = [
         'published' => 'boolean',
         'notifications' => 'array',
+        'tags' => 'array',
+        'categories' => 'array',
     ];
 }
-
-
-
-

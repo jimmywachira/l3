@@ -16,6 +16,7 @@ class Search extends Component
     #[Validate('string|required')]
     #[Url(as:'q',except:'')] #,history:true
     public $searchText="";
+    
     //public $results = [];
     public $placeholder="Search articles ... ";
 

@@ -1,79 +1,242 @@
-<div class="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-    <div class="shadow-xl sm:rounded-lg p-6 bg-gray-100/50">
-        <h1 class="text-3xl font-bold text-gray-900 mb-6">Create New Article</h1>
-
-        <form wire:submit.prevent="save">
-            <div class="mb-4">
-                <label for="title" class="block font-bold text-gray-700">Title</label>
-                <input type="text" id="title" wire:model="form.title" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-                @error('title') <span class="p-2 m-2 text-red-500 ">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="mb-4">
-                <label for="content" class="block font-bold text-gray-700">Content</label>
-                <textarea id="content" wire:model="form.content" rows="5" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
-                @error('content') <span class="p-2 m-2 text-red-500 ">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="mb-4">
-                <label for="photo_path" class="block font-bold text-gray-700">Photo</label>
-
-                <div class="mb-4">
-                    <label for="photo_path" class="block font-bold text-gray-700">Photo</label>
-
-                    <div class="mb-2">
-                        @if($form->photo){
-                        <img src="{{ $this->photo->temporaryUrl() }}" alt="Preview Photo" class="w-1/2 rounded-md">
-                        }
-                        @endif
-                    </div>
-
-                    <input type="file" id="photo_path" wire:model="form.photo_path" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-                    @error('photo_path') <span class="p-2 m-2 text-red-500 ">{{ $message }}</span> @enderror
-                </div>
-
-                <input type="file" id="photo_path" wire:model="form.photo_path" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-                @error('photo_path') <span class="p-2 m-2 text-red-500 ">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="mb-4">
-                <label class="flex items-center">
-                    <input type="checkbox" class="mr-2" name="published" wire:model.boolean="form.published">published</label>
-            </div>
-
+<div class="min-h-screen bg-gradient-to-b from-zinc-50 via-white to-zinc-100">
+    <div class="max-w-6xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+        <div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
-                <div class="mb-4"> notification options</div>
-                <div class="flex gap-4 mb-3">
-                    <div>
-                        <label class="flex items-center">
-                            <input wire:model.boolean="form.allowNotifications" class="mr-2" type="radio" value="true">Yes
-                        </label>
+                <p class="text-xs uppercase tracking-[0.3em] text-zinc-400">Editorial Studio</p>
+                <h1 class="mt-2 text-3xl font-bold text-zinc-900 sm:text-4xl">Create New Article</h1>
+                <p class="mt-2 text-sm text-zinc-500">Craft the story, manage media, and set publishing options.</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2 text-xs font-semibold text-zinc-500">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                    Draft mode
+                </span>
+                <a wire:navigate href="/dashboard/articles" class="inline-flex items-center gap-2 rounded-full border border-zinc-900/10 bg-white px-4 py-2 text-xs font-semibold text-zinc-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-zinc-900 hover:text-white">
+                    <ion-icon name="arrow-back-outline" class="text-sm"></ion-icon>
+                    Back to library
+                </a>
+            </div>
+        </div>
 
-                        <label class="flex items-center">
-                            <input wire:model.boolean="form.allowNotifications" class="mr-2" type="radio" value="false">no
-                        </label>
+        <form
+            wire:submit.prevent="save"
+            x-data="{
+                title: @entangle('form.title').live,
+                content: @entangle('form.content').live,
+                tags: @entangle('form.tags').live,
+                categories: @entangle('form.categories').live,
+                tagInput: '',
+                categoryInput: '',
+                wordCount() {
+                    const text = (this.content || '').trim();
+                    if (!text) return 0;
+                    return text.split(/\s+/).filter(Boolean).length;
+                },
+                readingTime() {
+                    const count = this.wordCount();
+                    return count === 0 ? 0 : Math.max(1, Math.ceil(count / 200));
+                },
+                addTag() {
+                    const value = this.tagInput.trim();
+                    if (!value) return;
+                    const exists = this.tags.some(tag => tag.toLowerCase() === value.toLowerCase());
+                    if (!exists) {
+                        this.tags = [...this.tags, value];
+                    }
+                    this.tagInput = '';
+                },
+                removeTag(index) {
+                    this.tags = this.tags.filter((_, i) => i !== index);
+                },
+                addCategory() {
+                    const value = this.categoryInput.trim();
+                    if (!value) return;
+                    const exists = this.categories.some(category => category.toLowerCase() === value.toLowerCase());
+                    if (!exists) {
+                        this.categories = [...this.categories, value];
+                    }
+                    this.categoryInput = '';
+                },
+                removeCategory(index) {
+                    this.categories = this.categories.filter((_, i) => i !== index);
+                }
+            }"
+            class="grid gap-6 lg:grid-cols-[1.4fr_1fr]"
+        >
+            <div class="space-y-6">
+                <div class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+                    <div class="border-b border-zinc-200 pb-4">
+                        <h2 class="text-lg font-semibold text-zinc-900">Article Details</h2>
+                        <p class="text-sm text-zinc-500">Add a title, body content, and a featured image.</p>
                     </div>
 
-                    <div x-show="$wire.form.allowNotifications" class="flex gap-4">
-                        <label class="flex items-center">
-                            <input wire:model="form.notifications" class="mr-2" type="checkbox" value="email">email
-                        </label>
+                    <div class="mt-6 space-y-5">
+                        <div>
+                            <label for="title" class="text-sm font-semibold text-zinc-700">Title</label>
+                            <input type="text" id="title" x-model="title" placeholder="The future of creative writing" class="mt-2 block w-full rounded-2xl border border-zinc-200 px-4 py-3 text-sm text-zinc-700 shadow-sm focus:border-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900/20">
+                            @error('title') <span class="mt-2 block text-xs font-semibold text-red-500">{{ $message }}</span> @enderror
+                        </div>
 
-                        <label class="flex items-center">
-                            <input wire:model="form.notifications" class="mr-2" type="checkbox" value="sms">sms
-                        </label>
-                        <label class="flex items-center">
-                            <input wire:model="form.notifications" class="mr-2" type="checkbox" value="push">push
-                        </label>
+                        <div>
+                            <label for="content" class="text-sm font-semibold text-zinc-700">Content</label>
+                            <textarea id="content" x-model="content" rows="10" placeholder="Write the main story here..." class="mt-2 block w-full rounded-2xl border border-zinc-200 px-4 py-3 text-sm text-zinc-700 shadow-sm focus:border-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900/20"></textarea>
+                            @error('content') <span class="mt-2 block text-xs font-semibold text-red-500">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div>
+                            <label for="photo" class="text-sm font-semibold text-zinc-700">Featured Photo</label>
+                            <div class="mt-3 flex flex-col gap-4 rounded-2xl border border-dashed border-zinc-200 bg-zinc-50 px-4 py-4">
+                                @if($form->photo)
+                                <img src="{{ $form->photo->temporaryUrl() }}" alt="Preview Photo" class="h-44 w-full rounded-2xl object-cover">
+                                @else
+                                <div class="flex flex-col items-center justify-center text-center text-sm text-zinc-400">
+                                    <ion-icon name="image-outline" class="text-3xl"></ion-icon>
+                                    <p class="mt-2">Upload a high quality cover image.</p>
+                                </div>
+                                @endif
+                                <input type="file" id="photo" wire:model="form.photo" class="block w-full text-sm text-zinc-600 file:mr-4 file:rounded-full file:border-0 file:bg-zinc-900 file:px-4 file:py-2 file:text-xs file:font-semibold file:text-white hover:file:bg-zinc-800">
+                            </div>
+                            @error('photo') <span class="mt-2 block text-xs font-semibold text-red-500">{{ $message }}</span> @enderror
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+                    <div class="border-b border-zinc-200 pb-4">
+                        <h2 class="text-lg font-semibold text-zinc-900">Tags & Categories</h2>
+                        <p class="text-sm text-zinc-500">Add descriptors to improve discoverability.</p>
+                    </div>
+
+                    <div class="mt-6 grid gap-5 sm:grid-cols-2">
+                        <div>
+                            <label class="text-sm font-semibold text-zinc-700">Tags</label>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <template x-for="(tag, index) in tags" :key="tag + index">
+                                    <span class="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-3 py-1 text-xs font-semibold text-white">
+                                        <span x-text="tag"></span>
+                                        <button type="button" @click="removeTag(index)" class="text-white/70 hover:text-white">&times;</button>
+                                    </span>
+                                </template>
+                                <span x-show="tags.length === 0" class="text-xs text-zinc-400">No tags yet.</span>
+                            </div>
+                            <div class="mt-3 flex items-center gap-2 rounded-2xl border border-zinc-200 bg-white px-3 py-2">
+                                <input type="text" x-model="tagInput" @keydown.enter.prevent="addTag" @keydown.comma.prevent="addTag" placeholder="Add a tag and press enter" class="w-full border-0 bg-transparent text-xs text-zinc-700 outline-none placeholder:text-zinc-400">
+                                <button type="button" @click="addTag" class="rounded-full bg-zinc-900 px-3 py-1 text-xs font-semibold text-white">Add</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-sm font-semibold text-zinc-700">Categories</label>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <template x-for="(category, index) in categories" :key="category + index">
+                                    <span class="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-semibold text-zinc-700">
+                                        <span x-text="category"></span>
+                                        <button type="button" @click="removeCategory(index)" class="text-zinc-400 hover:text-zinc-900">&times;</button>
+                                    </span>
+                                </template>
+                                <span x-show="categories.length === 0" class="text-xs text-zinc-400">No categories yet.</span>
+                            </div>
+                            <div class="mt-3 flex items-center gap-2 rounded-2xl border border-zinc-200 bg-white px-3 py-2">
+                                <input type="text" x-model="categoryInput" @keydown.enter.prevent="addCategory" @keydown.comma.prevent="addCategory" placeholder="Add a category and press enter" class="w-full border-0 bg-transparent text-xs text-zinc-700 outline-none placeholder:text-zinc-400">
+                                <button type="button" @click="addCategory" class="rounded-full border border-zinc-900 px-3 py-1 text-xs font-semibold text-zinc-900">Add</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <div class="flex flex-col gap-6">
+                <div class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+                    <h3 class="text-base font-semibold text-zinc-900">Writing Insights</h3>
+                    <p class="mt-1 text-sm text-zinc-500">Track reading time and length in real time.</p>
+                    <div class="mt-5 grid grid-cols-2 gap-4">
+                        <div class="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+                            <p class="text-xs uppercase tracking-[0.2em] text-zinc-400">Word Count</p>
+                            <p class="mt-3 text-2xl font-semibold text-zinc-900" x-text="wordCount()"></p>
+                        </div>
+                        <div class="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+                            <p class="text-xs uppercase tracking-[0.2em] text-zinc-400">Reading Time</p>
+                            <p class="mt-3 text-2xl font-semibold text-zinc-900" x-text="readingTime() === 0 ? '0 min' : readingTime() + ' min'"></p>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="flex justify-end">
-                <button wire:dirty.class='hover:bg-blue-700' type="submit" wire:dirty.remove.attr="disabled" class="bg-blue-600 disabled:opacity-30 text-white font-bold py-2 px-4 rounded-full shadow-md transition transform hover:scale-105" disabled>
-                    save
-                </button>
+                <div class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base font-semibold text-zinc-900">Live Preview</h3>
+                        <span class="text-xs font-semibold text-emerald-600">Split view</span>
+                    </div>
+                    <div class="mt-4 space-y-4">
+                        @if($form->photo)
+                        <img src="{{ $form->photo->temporaryUrl() }}" alt="Preview" class="h-40 w-full rounded-2xl object-cover">
+                        @endif
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.2em] text-zinc-400">Title</p>
+                            <h4 class="mt-2 text-lg font-semibold text-zinc-900" x-text="title || 'Untitled draft'"></h4>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.2em] text-zinc-400">Excerpt</p>
+                            <p class="mt-2 text-sm text-zinc-600 whitespace-pre-wrap" x-text="content || 'Start writing to see the preview here.'"></p>
+                        </div>
+                        <div class="flex flex-wrap gap-2" x-show="tags.length || categories.length">
+                            <template x-for="tag in tags" :key="tag">
+                                <span class="rounded-full bg-zinc-900 px-3 py-1 text-xs font-semibold text-white" x-text="tag"></span>
+                            </template>
+                            <template x-for="category in categories" :key="category">
+                                <span class="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-semibold text-zinc-700" x-text="category"></span>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+                    <h3 class="text-base font-semibold text-zinc-900">Publishing</h3>
+                    <p class="mt-1 text-sm text-zinc-500">Set visibility and publish status.</p>
+                    <label class="mt-5 flex items-center justify-between rounded-2xl border border-zinc-200 px-4 py-3 text-sm font-semibold text-zinc-700">
+                        <span>Published</span>
+                        <input type="checkbox" class="h-4 w-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" name="published" wire:model.boolean="form.published">
+                    </label>
+                </div>
+
+                <div class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+                    <h3 class="text-base font-semibold text-zinc-900">Notifications</h3>
+                    <p class="mt-1 text-sm text-zinc-500">Choose if followers should be notified.</p>
+                    <div class="mt-5 space-y-3">
+                        <label class="flex items-center gap-2 text-sm text-zinc-700">
+                            <input wire:model.boolean="form.allowNotifications" class="h-4 w-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" type="radio" value="true">
+                            Notify subscribers
+                        </label>
+                        <label class="flex items-center gap-2 text-sm text-zinc-700">
+                            <input wire:model.boolean="form.allowNotifications" class="h-4 w-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" type="radio" value="false">
+                            Do not notify
+                        </label>
+                    </div>
+                    <div x-show="$wire.form.allowNotifications" class="mt-4 flex flex-col gap-3 rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3">
+                        <label class="flex items-center gap-2 text-xs font-semibold text-zinc-600">
+                            <input wire:model="form.notifications" class="h-4 w-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" type="checkbox" value="email">
+                            Email
+                        </label>
+                        <label class="flex items-center gap-2 text-xs font-semibold text-zinc-600">
+                            <input wire:model="form.notifications" class="h-4 w-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" type="checkbox" value="sms">
+                            SMS
+                        </label>
+                        <label class="flex items-center gap-2 text-xs font-semibold text-zinc-600">
+                            <input wire:model="form.notifications" class="h-4 w-4 rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900" type="checkbox" value="push">
+                            Push
+                        </label>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl border border-zinc-200 bg-zinc-900 p-6 text-white shadow-lg shadow-zinc-900/20">
+                    <h3 class="text-base font-semibold">Ready to publish?</h3>
+                    <p class="mt-2 text-sm text-white/70">Double-check the preview before you hit save.</p>
+                    <div class="mt-6 flex flex-col gap-3">
+                        <button wire:dirty.class='hover:bg-zinc-800' type="submit" wire:dirty.remove.attr="disabled" class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-zinc-900 shadow-sm transition hover:-translate-y-0.5 disabled:opacity-40" disabled>
+                            Save article
+                        </button>
+                        <p class="text-xs text-white/60">Drafts are visible only to you until published.</p>
+                    </div>
+                </div>
             </div>
         </form>
     </div>

@@ -29,8 +29,8 @@
                 <div class="w-full max-w-md space-y-8">
                     <div class="text-center">
                         <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Sign in to your account</h2>
-                        <p class="mt-2 text-sm text-gray-600">
-                            New to our platform?
+                        <p class="mt-2 text-gray-600">
+                            New to our platform ?
                             <a wire:navigate href="/" class="text-blue-600 hover:text-blue-500 transition-colors">
                                 Visit homepage
                             </a>
