@@ -9,7 +9,6 @@ use Livewire\WithPagination;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Session;
 
-
 #[Title('Manage Articles')]
 class ArticleList extends AdminComponent{
 

@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <div class="md:grid md:grid-cols-1 md:gap-8">
+                <div class="md:grid md:grid-cols-1 md:gap-4">
                     <div>
                         <h3 class="text-sm text-blue-700 font-semibold tracking-wider uppercase">Subscribe</h3>
                         <p class="mt-4 ">The latest news, articles, and resources, sent to your inbox weekly.</p>
